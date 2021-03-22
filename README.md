@@ -127,7 +127,14 @@ OpenJDK 64-Bit Server VM (build 15.0.2+7, mixed mode, sharing)
 
 ### コンテナ作成
 
-1. 以下のコマンドを実行する。
+1. Web Application の jar を作成する。
+
+    ```sh
+    $ gradle build
+    ```
+
+
+1. コンテナを作成する。
 
     ```sh
     $ docker-compose build
