@@ -8,3 +8,29 @@ services:
     container_name: api
     ports:
       - 7650:8080
+    environment:
+      MYSQL_HOST: db
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7.33
+    hostname: db
+    container_name: db
+    ports:
+      - 2830:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: sample_dev
+      MYSQL_USER: sample
+      MYSQL_PASSWORD: sample
+    volumes:
+      - db_data:/var/lib/mysql
+      - .dev/settings/mysql/my.cnf:/etc/mysql/my.cnf
+
+volumes:
+  db_data:
+    driver_opts:
+      type: none
+      device: ./.dev/volumes/mysql
+      o: bind
